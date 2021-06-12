@@ -36,4 +36,27 @@ router.get('/:id', function (req, res) {
     return res.json(user)
 })
 
+// PUT /api/users gets JSON bodies
+router.put('/:id', function (req, res) {
+
+    const id = req.params.id
+
+    const users = [
+        {
+            id: '1',
+            name: 'sho213',
+        },
+        {
+            id: '2',
+            name: 'shovity123',
+        },
+    ]
+
+    const user = users.find(u => u.id  === id)
+
+    console.log(user)
+
+    return res.json(user)
+})
+
 module.exports = router

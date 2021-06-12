@@ -10,9 +10,19 @@ app.use(cookieParser())
 
 const port = 9000
 
+app.get('/', express.static('public'))
 app.use('/api', routers)
+app.use('/static', express.static('static'))
 
-// self-written cookie parser
+app.listen(port, () => {
+    console.log(`Example app listening at http://localhost:${port}`)
+})
+
+
+
+
+
+// self-written cookie parser (for fun)
 // app.use((req, res, next) => {
 //     // raw cookies 
 //     const raw = req.headers.cookie
@@ -28,8 +38,3 @@ app.use('/api', routers)
 //     console.log(req.cookies)
 //     next();
 // })
-
-
-app.listen(port, () => {
-    console.log(`Example app listening at http://localhost:${port}`)
-})
