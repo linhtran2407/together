@@ -13,12 +13,12 @@ router.post('/', (req ,res, next) => {
     Users.findOne({userName}, function (err, user) {
         // check existence
         if (user) { 
-            return res.status(400).json({err: 'Username existed! Choose another one.'})
+            return res.status(400).json({err: 'Username existed! Choose another username.'})
         }
 
         // check validation
         if (password !== confirmPassword) {
-            return res.status(400).json({err: 'Password and password confirmation do not match!'})
+            return res.status(400).json({err: 'Passwords do not match!'})
         }
 
         // create user
