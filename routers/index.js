@@ -7,9 +7,12 @@ const messages = require('./messages')
 
 const router = express.Router()
 
-router.use('/users', users)
 router.use('/signin', signin)
 router.use('/signup', signup)
+
+// authen
+
+router.use('/users', users)
 router.use('/diaries', diaries)
 router.use('/messages', messages)
 

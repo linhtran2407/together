@@ -23,26 +23,16 @@ router.get('/:_id', function (req, res) {
 })
 
 // PUT /api/users gets JSON bodies
-router.put('/:id', function (req, res) {
+router.put('/:_id', function (req, res) {
+    const id = req.params._id
+    Users.findById(id, function (err, u) {
+        if (err) {
+            return res.status(400).json({err: 'User not found'})
+        } else {
+            return res.json(u)
+        }
+    }) 
 
-    const id = req.params.id
-
-    const users = [
-        {
-            id: '1',
-            name: 'sho213',
-        },
-        {
-            id: '2',
-            name: 'shovity123',
-        },
-    ]
-
-    const user = users.find(u => u.id  === id)
-
-    console.log(user)
-
-    return res.json(user)
 })
 
 module.exports = router

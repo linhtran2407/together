@@ -1,15 +1,21 @@
-const mongoose = require('mongoose');
+const mongoose = require('mongoose')
+const config = require('../config')
+const jwt = require('jsonwebtoken')
 
 const { Schema } = mongoose;
 
 // define Schema
-const usersSchema = new Schema({
-    firstName: String,
-    lastName: String,
-    userName: String,
-    passHash: String,
-    type: String,
-});
+const usersSchema = new Schema(
+    {
+        firstName: String,
+        lastName: String,
+        userName: String,
+        passHash: String,
+    },
+    {
+        timestamps: true,
+    }
+);
 
 // Add methods
 /// NOTE: methods must be added to the schema before compiling it with mongoose.model()
@@ -20,18 +26,18 @@ usersSchema.methods.speak = function () {
     console.log(greeting);
 }
 
-// add method to find types
-usersSchema.methods.findSimilarTypes = function(cb) {
-    return mongoose.model('Users').find({ type: this.type }, cb);
-};
-
-// add static function: way 1
-usersSchema.statics.findByName = function(userName, cb) {
-    return this.find({ userName : new RegExp(userName, 'i') }, cb); // 'i' = ignoreCase
-};
-
-// way 2, equivalently: call `schema.static()`
-// usersSchema.static('findByName', function(userName) { return this.find({ userName }); });
+usersSchema.methods.getToken = async function () {
+    return new Promise((resolve, reject) => {
+        const data = { _id: this._id, firstName: this.firstName, lastName: this.lastName, userName: this.userName }
+        jwt.sign(data, config.private_key, function(err, token) {
+            if (err) {
+                reject(err)
+            } else {
+                resolve(token)
+            }
+        });
+    })
+}
 
 // create model: compile Schema into the model
 const Users = mongoose.model('Users', usersSchema);
