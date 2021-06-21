@@ -8,14 +8,14 @@ router.post('/', function (req, res) {
     const userName = req.body.userName
     const password = md5(req.body.password)
 
-    Users.findOne( {userName}, (err, u) => {
+    Users.findOne( {userName}, (error, u) => {
         // check existence
         if (!u) {
-            return res.status(400).json({err: 'User not found'})
+            return res.status(400).json({error: 'User not found'})
         } else {
             // check password 
             if (password !== u.passHash) {
-                return res.status(400).json({err: 'Password is not correct'})
+                return res.status(400).json({error: 'Password is not correct'})
             } else {
                 // get token + create cookies
                 u.getToken().then(function (token) {

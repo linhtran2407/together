@@ -29,9 +29,9 @@ usersSchema.methods.speak = function () {
 usersSchema.methods.getToken = async function () {
     return new Promise((resolve, reject) => {
         const data = { _id: this._id, firstName: this.firstName, lastName: this.lastName, userName: this.userName }
-        jwt.sign(data, config.private_key, function(err, token) {
-            if (err) {
-                reject(err)
+        jwt.sign(data, config.private_key, function(error, token) {
+            if (error) {
+                reject(error)
             } else {
                 resolve(token)
             }
