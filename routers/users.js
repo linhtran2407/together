@@ -1,11 +1,9 @@
 const express = require('express')
-const Users = require('../models/User')
 const router = express.Router()
+const Users = require('../models/User')
 
 // POST /api/users gets JSON bodies    ??????????
 router.post('/', function (req, res) {
-    console.log(req.body)
-    console.log(req.cookies)
     return res.json(req.body)
 })
 

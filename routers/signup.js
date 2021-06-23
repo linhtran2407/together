@@ -11,6 +11,12 @@ router.post('/', (req ,res, next) => {
     const confirmPassword = req.body.confirmPassword
 
     Users.findOne({userName}, function (error, user) {
+
+        if (error) {
+            res.status(500).send({ message: error });
+            return;
+        }
+
         // check existence
         if (user) { 
             return res.status(400).json({error: 'Username existed! Choose another username.'})

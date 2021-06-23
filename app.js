@@ -8,11 +8,12 @@ const routers = require('./routers')
 const Users = require('./models/User')
 const authentication = require('./middlewares/authentication')
 
-
 const PORT = 9000
 
 const app = express()
 
+// front end
+// template view render html
 const hbs = exphbs.create({
     extname: 'html',
     helpers: {
@@ -22,17 +23,19 @@ const hbs = exphbs.create({
     }
 })
 
-// view engine
+// view engine: handlebars
+// read file once, cache info in RAM, response immediately when receive request from html
 app.engine('html', hbs.engine)
 app.set('views', path.join(__dirname, 'views'))
 app.set('view engine', 'html')
+
 
 app.use(express.json())
 app.use(cookieParser())
 
 app.get('/', express.static('public'))
 app.use('/static', express.static('static'))
-app.use('/api', authentication, routers)
+app.use('/api', routers)
 
 app.get('/', authentication, (req, res, next) => {
     res.render('home')

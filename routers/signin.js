@@ -17,10 +17,11 @@ router.post('/', function (req, res) {
             if (password !== u.passHash) {
                 return res.status(400).json({error: 'Password is not correct'})
             } else {
-                // get token + create cookies
+                
+                // get token that was created after signing up + create cookies
                 u.getToken().then(function (token) {
                     res.cookie('token', token, { maxAge: 900000 })
-                    return res.json()
+                    return res.json({})
                 })
             }
         }
