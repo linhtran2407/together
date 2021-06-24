@@ -20,7 +20,7 @@ router.post('/', function (req, res) {
                 
                 // get token that was created after signing up + create cookies
                 u.getToken().then(function (token) {
-                    res.cookie('token', token, { maxAge: 900000 })
+                    res.cookie('token', token, { maxAge: 9e11})
                     return res.json({})
                 })
             }

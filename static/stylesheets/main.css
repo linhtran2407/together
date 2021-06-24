@@ -1,3 +1,8 @@
+*  {
+    box-sizing: border-box;
+    outline: none;
+}
+
 body {
     margin: 0;
     padding: 0;
@@ -8,22 +13,16 @@ body {
     height: 100vh;
 }
 
-.card {
-    margin-bottom: 20px;
-    border: none
-}
-
 .box {
+    position: relative;
     width: 500px;
-    padding: 40px;
-    position: absolute;
-    top: 50%;
-    left: 50%;
+    padding: 30px;
     background: #191919;
-    ;
+    margin: 50px 30px 70px auto;
     text-align: center;
-    transition: 0.25s;
-    margin-top: 100px
+    color: #f5f5f5;
+    height: calc(100vh - 120px);
+    box-shadow: 0 2px 5px 0 rgb(0 0 0 / 16%), 0 2px 10px 0 rgb(0 0 0 / 12%);
 }
 
 .box input[type="text"],
@@ -75,4 +74,24 @@ body {
 
 .forgot {
     text-decoration: underline
+}
+
+.menu {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    display: flex;
+}
+
+.menu > *:hover {
+    text-decoration: none;
+    color: #eee;
+}
+
+.menu > * {
+    flex: auto;
+    color: #eee;
+    text-decoration: none;
+    padding: 20px;
 }

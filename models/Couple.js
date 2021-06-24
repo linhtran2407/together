@@ -19,11 +19,6 @@ const coupleSchema = new Schema(
     },
 )
 
-
-// { 'users._id': user._id }
-
-// { 'users.userName': partnerName }
-
 const Couple = mongoose.model('Couple', coupleSchema)
 
 module.exports = Couple

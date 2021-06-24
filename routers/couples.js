@@ -1,4 +1,3 @@
-// check both if paired, yes -> create a new pair
 const express = require ('express')
 const router = express.Router()
 const Couple = require('../models/Couple')
@@ -26,13 +25,14 @@ router.post('/', function (req, res) {
                         return res.json( {error: 'Đừng làm trà xanh'})
                     }
 
-                    const cp = new Couple( {
+                    const cp = new Couple({
                         users: [user, partner],
                         startDate: Date.now(),
                         
                     })
-                    cp.save()
-                    return res.json(cp)
+                    cp.save(() => {
+                        return res.json(cp)
+                    })  
                 })
             })
         }

@@ -2,7 +2,7 @@ const express = require('express')
 const router = express.Router()
 const Users = require('../models/User')
 
-// POST /api/users gets JSON bodies    ??????????
+// POST /api/users gets JSON bodies
 router.post('/', function (req, res) {
     return res.json(req.body)
 })
