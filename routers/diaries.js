@@ -34,13 +34,13 @@ router.get('/', function (req, res) {
             return res.status(400).json({error: 'Couple not found'})
         }
         
-        Couple.find({'_id': couple._id}, function(error, diaries){
+        Diary.find({'couple_id': couple._id}, function(error, diaries){
             if (error){
                 return res.status(400).json({error: 'Diaries not found'})
             }
-
+            
             return res.json(diaries)
-        })
+        }).sort({ createdAt: -1 }).limit(2).skip(2)
     })
 })
 
