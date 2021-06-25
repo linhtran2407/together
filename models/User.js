@@ -11,6 +11,7 @@ const usersSchema = new Schema(
         lastName: String,
         userName: String,
         passHash: String,
+        avatar: String,
     },
     {
         timestamps: true,
