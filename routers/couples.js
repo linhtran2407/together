@@ -40,4 +40,18 @@ router.post('/', function (req, res) {
 })
 
 
+router.get('/', function (req, res) {
+    const user = req.user
+    Couple.findOne({'users._id': user._id}, function(error, couple) {
+        if (error) {
+            return res.status(400).json({error})
+        } else {
+            if (!couple) {
+                return res.json(couple)
+            }
+        }
+    }) 
+})
+
+
 module.exports = router
