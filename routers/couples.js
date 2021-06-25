@@ -46,9 +46,10 @@ router.get('/', function (req, res) {
         if (error) {
             return res.status(400).json({error})
         } else {
-            if (!couple) {
+            if (couple) {
                 return res.json(couple)
             }
+            return res.json({error: 'Couple not found'})
         }
     }) 
 })

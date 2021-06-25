@@ -28,6 +28,8 @@ router.post('/', function (req, res) {
 
 router.get('/', function (req, res) {
     const user = req.user
+    const limit = req.query.limit || 5
+    const offset = req.query.offset || 0
 
     Couple.findOne({'users._id': user._id}, function(error, couple){
         if (error || !couple) {
@@ -40,7 +42,7 @@ router.get('/', function (req, res) {
             }
             
             return res.json(diaries)
-        }).sort({ createdAt: -1 }).limit(2).skip(2)
+        }).sort({ createdAt: -1 }).limit(limit).skip(offset)
     })
 })
 
