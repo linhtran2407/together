@@ -1,5 +1,4 @@
 const express = require('express')
-
 const authentication = require('../middlewares/authentication')
 const users = require('./users')
 const signin = require('./signin')
