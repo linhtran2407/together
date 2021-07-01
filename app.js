@@ -10,7 +10,6 @@ const Users = require('./models/User')
 const authentication = require('./middlewares/authentication')
 const io = require('./io')
 
-
 const app = express()
 const server = http.createServer(app)
 

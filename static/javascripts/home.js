@@ -9,14 +9,15 @@ document.addEventListener('DOMContentLoaded', () => {
         contents[position - 1].className = ''
     }
 
-    fetch('/api/couples').then(res => res.json()).then((couple) => {
-        console.log(couple)
-
+    fetch('/api/couples').then(res => res.json()).then(({ couple, user }) => {
         window.username_1.innerHTML = couple.users[0].userName
         window.username_2.innerHTML = couple.users[1].userName
 
         window.start_date.innerHTML = moment.utc(couple.createdAt).local().format(' HH:mm DD/MM/YYYY')
         window.counter_relative.innerHTML = Math.floor((Date.now() - new Date(couple.createdAt)) / 86400000) +  ' Days'
+
+        window.user = user
+        socket.emit('login', user)
     })
 
     // const 
