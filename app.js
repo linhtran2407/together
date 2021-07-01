@@ -1,3 +1,4 @@
+const http = require('http')
 const path = require('path')
 const express = require('express')
 const cookieParser = require('cookie-parser')
@@ -7,10 +8,13 @@ const connection = require('./connection')
 const routers = require('./routers')
 const Users = require('./models/User')
 const authentication = require('./middlewares/authentication')
+const io = require('./io')
 
-const PORT = 9000
 
 const app = express()
+const server = http.createServer(app)
+
+io.attach(server)
 
 // front end
 // template view render html
@@ -49,6 +53,19 @@ app.get('/signin', (req, res, next) => {
     res.render('signin')
 })
 
-app.listen(PORT, () => {
-    console.log(`Example app listening at http://localhost:${PORT}`)
+
+let holder = null
+
+app.get('/gg', (req, res) => {
+    holder = res
+})
+
+app.get('/cc', (req, res) => {
+    res.end('')
+    holder.end('ok')
+})
+
+
+server.listen(9000, () => {
+    console.log(`Together app listening at http://localhost:9000`)
 })
