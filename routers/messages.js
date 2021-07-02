@@ -1,28 +1,31 @@
 const express = require('express')
-
 const router = express.Router()
+const Couple = require('../models/Couple')
+const Messages = requrie('../models/Messages')
 
 router.post('/', function (req, res) {
     return res.json(req.body)
 })
 
-router.get('/:_id', function (req, res) {
-    const _id = req.params._id
+router.get('/', function (req, res) {
+    const user = req.user
+    const limit = req.query.limit || 10
+    const offset = req.query.offset || 0
 
-    const sample_messages = [
-        {
-            id: '1',
-            msg: 'ndfjkasfn'
-        },
-        {
-            id: '2',
-            msg: '124352465'
+    Couple.findOne({'users._id': user._id}, function(error, couple) {
+        if (error || !couple){
+            return res.status(400).json({error: "Couple not found"})
         }
-    ]
 
-    const message = sample_messages.find(mess => mess.id === _id)
+        Messages.find({'couple.id': couple._id}, function (error, msg) {
+            if (error){
+                return res.status(400).json({error: "Messages not found"})
+            }
 
-    return res.send(`Get msg: ${message.msg}`)
+            return res.json(msg)
+        }).sort({ createdAt: -1}).limit(limit).skip(offset)
+    })
+
 })
 
 module.exports = router
