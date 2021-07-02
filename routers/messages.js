@@ -1,7 +1,7 @@
 const express = require('express')
 const router = express.Router()
 const Couple = require('../models/Couple')
-const Messages = requrie('../models/Messages')
+const Message = require('../models/Message')
 
 router.post('/', function (req, res) {
     return res.json(req.body)
@@ -17,9 +17,9 @@ router.get('/', function (req, res) {
             return res.status(400).json({error: "Couple not found"})
         }
 
-        Messages.find({'couple.id': couple._id}, function (error, msg) {
+        Message.find({'couple._id': couple._id}, function (error, msg) {
             if (error){
-                return res.status(400).json({error: "Messages not found"})
+                return res.status(400).json({error: "Message not found"})
             }
 
             return res.json(msg)

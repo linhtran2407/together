@@ -6,8 +6,6 @@ const coupleSchema = new Schema(
     {
         users: [{
             _id: String,
-            firstName: String,
-            lastName: String,
             userName: String,
         }],
 

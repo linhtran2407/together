@@ -3,7 +3,11 @@ const { Schema } = mongoose
 
 const msgSchema = new Schema(
     {
-        user: User,
+        user: {
+            _id: String,
+            userName: String,
+        },
+        coupleID: String,
         content: String,
     },
     {
@@ -11,6 +15,6 @@ const msgSchema = new Schema(
     },
 )
 
-const Messages = mongoose.model('Messages', msgSchema)
+const Message = mongoose.model('Message', msgSchema)
 
-module.exports = Messages
+module.exports = Message

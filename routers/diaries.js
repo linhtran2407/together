@@ -1,6 +1,6 @@
 const express = require('express')
 const Couple = require('../models/Couple')
-const Diary = require('../models/Diaries')
+const Diary = require('../models/Diary')
 const router = express.Router()
 
 router.post('/', function (req, res) {
@@ -36,12 +36,12 @@ router.get('/', function (req, res) {
             return res.status(400).json({error: 'Couple not found'})
         }
         
-        Diary.find({'couple_id': couple._id}, function(error, diaries){
+        Diary.find({'couple_id': couple._id}, function(error, diary){
             if (error){
-                return res.status(400).json({error: 'Diaries not found'})
+                return res.status(400).json({error: 'Diary not found'})
             }
             
-            return res.json(diaries)
+            return res.json(diary)
         }).sort({ createdAt: -1 }).limit(limit).skip(offset)
     })
 })
@@ -49,7 +49,7 @@ router.get('/', function (req, res) {
 // router.delete('/:_id', function (req, res) {
 //     const _id = req.params._id
 
-//     const sample_diaries = [
+//     const sample_diary = [
 //         {
 //             id: '1',
 //             title: 'today'
@@ -60,15 +60,15 @@ router.get('/', function (req, res) {
 //         }
 //     ]
 
-//     const dr = sample_diaries.find(dr => dr.id === _id)
+//     const dr = sample_diary.find(dr => dr.id === _id)
 
-//     return res.send(`Delete diaries: ${dr.title}`)
+//     return res.send(`Delete diary: ${dr.title}`)
 // })
 
 // router.put('/:_id', function (req, res) {
 //     const _id = req.params._id
 
-//     const sample_diaries = [
+//     const sample_diary = [
 //         {
 //             id: '1',
 //             title: 'today'
@@ -79,9 +79,9 @@ router.get('/', function (req, res) {
 //         }
 //     ]
 
-//     const dr = sample_diaries.find(dr => dr.id === _id)
+//     const dr = sample_diary.find(dr => dr.id === _id)
 
-//     return res.send(`Put diaries: ${dr.title}`)
+//     return res.send(`Put diary: ${dr.title}`)
 // })
 
 

@@ -1,7 +1,7 @@
 const mongoose = require('mongoose')
 const {Schema} = mongoose
 
-const diariesSchema = new Schema(
+const diarySchema = new Schema(
     {
         couple_id: String,
         user: {
@@ -15,6 +15,6 @@ const diariesSchema = new Schema(
     },
 )
 
-const Diary = mongoose.model('Diary', diariesSchema)
+const Diary = mongoose.model('Diary', diarySchema)
 
 module.exports = Diary
