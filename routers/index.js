@@ -6,6 +6,7 @@ const signup = require('./signup')
 const diaries = require('./diaries')
 const messages = require('./messages')
 const couples = require('./couples')
+const signout = require('./signout')
 
 const router = express.Router()
 
@@ -19,5 +20,6 @@ router.use('/users', users)
 router.use('/diaries', diaries)
 router.use('/messages', messages)
 router.use('/couples', couples)
+router.use('/signout', signout)
 
 module.exports = router

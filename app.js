@@ -3,6 +3,7 @@ const path = require('path')
 const express = require('express')
 const cookieParser = require('cookie-parser')
 const exphbs = require('express-handlebars')
+const expressListEndpoints = require('express-list-endpoints')
 
 const connection = require('./connection')
 const routers = require('./routers')
@@ -64,6 +65,10 @@ app.get('/cc', (req, res) => {
     holder.end('ok')
 })
 
+console.log('eroc: :dna: list apis')
+expressListEndpoints(app).forEach((api) => {
+    api.methods.forEach((m) => console.log(`    ${m.padEnd(6)} ${api.path}`))
+})
 
 server.listen(9000, () => {
     console.log(`Together app listening at http://localhost:9000`)
