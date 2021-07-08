@@ -65,24 +65,4 @@ router.get('/', function (req, res) {
 //     return res.send(`Delete diary: ${dr.title}`)
 // })
 
-// router.put('/:_id', function (req, res) {
-//     const _id = req.params._id
-
-//     const sample_diary = [
-//         {
-//             id: '1',
-//             title: 'today'
-//         },
-//         {
-//             id: '2',
-//             title: 'tomorrow'
-//         }
-//     ]
-
-//     const dr = sample_diary.find(dr => dr.id === _id)
-
-//     return res.send(`Put diary: ${dr.title}`)
-// })
-
-
 module.exports = router
